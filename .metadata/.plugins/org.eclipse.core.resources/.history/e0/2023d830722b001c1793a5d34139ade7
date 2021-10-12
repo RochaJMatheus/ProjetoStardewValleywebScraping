@@ -1,0 +1,12 @@
+package com.matheusScraping;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+public class MainScraping {
+
+	public static void main(String[] args) {
+
+	}
+
+}

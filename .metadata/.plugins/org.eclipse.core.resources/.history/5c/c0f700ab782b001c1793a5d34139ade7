@@ -1,0 +1,27 @@
+package com.matheus.factory;
+
+import java.sql.Connection;
+
+import javax.swing.JOptionPane;
+
+public class ConnectionFactory {
+	
+	public ConnectionFactory() {
+		}
+	}
+	
+	public Connection getConnection() {
+        String url = "jdbc:postgresql://localhost:5432/ESTUDO";  
+        String usuario = "postgres";  
+        String senha = "root"; 
+		Connection result = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			result = DriverManager.getConnection(url, usuario, senha);
+			return result;                        
+        }  
+        catch(Exception e){  
+			JOptionPane.showMessageDialog(null, e, "ERRO", JOptionPane.ERROR_MESSAGE);  
+        }
+		return result; 
+}	

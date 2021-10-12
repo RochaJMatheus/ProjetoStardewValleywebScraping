@@ -1,0 +1,64 @@
+package com.matheus.ItemDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.matheus.entidades.Itens;
+import com.matheus.factory.ConnectionFactory;
+
+public class ItensDAO {
+
+	public void inserirItens(String id, String nome) {
+		String sql = "INSERT INTO itens (id,nome)VALUES(?,?)";
+		PreparedStatement pstatement = null;
+		Connection connection = null;
+
+		try {
+			connection = new ConnectionFactory().getConnection();
+			pstatement = connection.prepareStatement(sql);
+			pstatement.setString(1, id);
+			pstatement.setString(2, nome);
+			pstatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstatement != null) {
+					pstatement.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+	public ArrayList<Itens> listaItens() {
+		String sql = "Select * from itens;";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ArrayList<Itens> item = null;
+		
+		try {
+			conn = new ConnectionFactory().getConnection();
+			pstm = conn.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			
+			if (rs != null ) {
+				Itens itens = new Itens();
+				while (rs.next()) {
+					
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+package com.matheus.ItemDAO;
+
+import com.matheus.entidades.Itens;
+
+public class ItensDAO {
+	
+	public void inserirItens(Itens item) {
+		
+	}
+	
+}

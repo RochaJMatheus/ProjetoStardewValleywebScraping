@@ -1,0 +1,40 @@
+package com.matheus.entidades;
+
+public class Itens {
+
+	private String codigoItem;
+	private String nome;
+
+	public Itens() {
+
+	}
+
+	public Itens(String codigoItem, String nome) {
+		super();
+		this.codigoItem = codigoItem;
+		this.nome = nome;
+	}
+
+	public String getCodigoItem() {
+		return codigoItem;
+	}
+
+	public void setCodigoItem(String codigoItem) {
+		this.codigoItem = codigoItem;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "Itens [codigoItem=" + codigoItem + ", nome=" + nome + "]";
+	}
+
+	
+}

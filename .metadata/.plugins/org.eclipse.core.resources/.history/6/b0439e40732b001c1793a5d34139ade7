@@ -1,0 +1,21 @@
+package com.matheusScraping;
+
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+
+public class MainScraping {
+
+	public static void main(String[] args) throws IOException {
+		// Passando a URL do site que vai ser acessado
+		String URL = "https://eduanttunes.github.io/stardew_valley_ids/";
+		Document doc = Jsoup.connect(URL).get();
+		
+		Element table = doc.getElementsByClass("table table-bordered table-striped").first();
+		
+	}
+
+}

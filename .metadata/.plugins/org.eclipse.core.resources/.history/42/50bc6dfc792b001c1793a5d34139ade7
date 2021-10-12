@@ -1,0 +1,44 @@
+package com.matheus.ItemDAO;
+
+import java.sql.SQLException;
+
+import com.matheus.entidades.Itens;
+
+public class ItensDAO {
+
+	public void inserirItens(Itens item) {
+		String sql = "INSERT INTO ATOR (nome,nacionalidade)VALUES(?,?)";
+		PreparedStatement pstatement = null;
+		Connection connection = null;
+
+		try {
+
+			connection = new ConnectionMVC().getConnection();
+			pstatement = connection.prepareStatement(sql);
+
+			pstatement.setString(1, ator.getNome());
+			pstatement.setString(2, ator.getNacionalidade());
+			pstatement.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (pstatement != null) {
+					pstatement.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+}

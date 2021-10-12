@@ -1,0 +1,87 @@
+package com.matheus.ItemDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.matheus.entidades.Itens;
+import com.matheus.factory.ConnectionFactory;
+
+public class ItensDAO {
+
+	public void inserirItens(String id , String nome) {
+		String sql = "INSERT INTO itens (id,nome)VALUES(?,?)";
+		PreparedStatement pstatement = null;
+		Connection connection = null;
+
+		try {
+			connection = new ConnectionFactory().getConnection();
+			pstatement = connection.prepareStatement(sql);
+			pstatement.setString(1, id);
+			pstatement.setString(2, nome);
+			pstatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstatement != null) {
+					pstatement.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+	
+	String sql = "SELECT * FROM ator WHERE nome LIKE '%" + nome + "%'ORDER BY nome";
+	Connection connection = null;
+	PreparedStatement pstm = null;
+	ArrayList<Itens> atores = null;
+
+	try {
+		connection = new ConnectionMVC().getConnection();
+		pstm = connection.prepareStatement(sql);
+		ResultSet rs = pstm.executeQuery();
+
+		if (rs != null) {
+			atores = new ArrayList<Ator>();
+			while (rs.next()) {
+				Ator ator = new Ator();
+				ator.setCodAtor(rs.getInt("codAtor"));
+				ator.setNacionalidade(rs.getString("nacionalidade"));
+				ator.setNome(rs.getNString("nome"));
+				atores.add(ator);
+			}
+		}
+		
+	} catch (SQLException ex) {
+		throw new ExceptionDAO("Erro ao consultar atores " + ex);
+	} finally {
+		try {
+			if (pstm != null) {
+				pstm.close();
+			}
+
+		} catch (SQLException ex) {
+			throw new ExceptionDAO("Não foi possivel fechar o statemnet " + ex);
+		}
+
+	}
+	try {
+		if (connection != null) {
+			connection.close();
+		}
+
+	} catch (SQLException ex) {
+		throw new ExceptionDAO("Não foi possivel fechar a conexão");
+	}
+	return atores;
+}
+}

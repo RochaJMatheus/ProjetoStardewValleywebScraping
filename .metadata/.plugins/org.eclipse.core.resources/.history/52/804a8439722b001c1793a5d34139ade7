@@ -1,0 +1,16 @@
+package com.matheusScraping;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+public class MainScraping {
+
+	public static void main(String[] args) {
+		// Passando a URL do site que vai ser acessado
+		String URL = "https://eduanttunes.github.io/stardew_valley_ids/";
+		
+		
+			Document doc = Jsoup.connect(URL).get();
+	}
+
+}

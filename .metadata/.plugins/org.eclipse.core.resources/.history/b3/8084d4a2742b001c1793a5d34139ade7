@@ -1,0 +1,52 @@
+package com.matheusScraping;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.matheus.entidades.Itens;
+
+public class MainScraping {
+
+	public static void main(String[] args) throws IOException {
+		// Passando a URL do site que vai ser acessado
+		String URL = "https://eduanttunes.github.io/stardew_valley_ids/";
+		Document doc = Jsoup.connect(URL).get();
+
+		Element table = doc.getElementsByClass("table table-bordered table-striped").first();
+
+		Element tbody = table.getElementsByTag("tbody").first();
+
+		List<Element> elementosItens = tbody.getElementsByTag("tr");
+
+		List<Itens> itens = new ArrayList<Itens>();
+
+		for (Element element : elementosItens) {
+			List<Element> atributos = element.getElementsByTag("td");
+
+			Itens item = new Itens(atributos.get(0).text(), atributos.get(2).text());
+			itens.add(item);
+		}
+		for (Itens i : itens ) {
+			
+		}
+	}
+
+	public static void convertJson(Itens item) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String Json = mapper.writeValueAsString(item);
+			System.out.println("Itens = " + Json);
+		} catch (JsonProcessingException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

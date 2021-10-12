@@ -1,0 +1,5 @@
+package com.matheus.factory;
+
+public class ConnectionFactory {
+	
+}	

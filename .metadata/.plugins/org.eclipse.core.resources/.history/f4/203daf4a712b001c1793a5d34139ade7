@@ -1,0 +1,13 @@
+package com.matheusScraping;
+
+import javax.swing.text.Document;
+
+public class MainScraping {
+	
+	//Passando a URL do site que vai ser acessado
+	String URL = "https://eduanttunes.github.io/stardew_valley_ids/";
+	
+	Document doc = Jsoup.connect().get();
+	
+	
+}

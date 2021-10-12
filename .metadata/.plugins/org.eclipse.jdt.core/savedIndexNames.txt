@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+C:\Users\mathe\Desktop\ProjetoStardewValley\.metadata\.plugins\org.eclipse.jdt.core
+3841959030.index
+3694854540.index
+1137407107.index
+3657195652.index
+757472208.index

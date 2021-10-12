@@ -1,0 +1,7 @@
+package com.matheus.entidades;
+
+public class Itens {
+	
+	private String  codigoItem ;
+	private String nome;
+}
